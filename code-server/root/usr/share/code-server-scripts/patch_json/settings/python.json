@@ -1,6 +1,0 @@
-{
-  "black-formatter.importStrategy": "fromEnvironment",
-  "isort.importStrategy": "fromEnvironment",
-  "python.defaultInterpreterPath": "/opt/shared-venv/bin/python",
-  "python.languageServer": "Jedi",
-}

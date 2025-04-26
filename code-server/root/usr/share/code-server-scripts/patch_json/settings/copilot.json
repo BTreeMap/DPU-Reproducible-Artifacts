@@ -1,9 +1,0 @@
-{
-  "github.copilot.chat.codesearch.enabled": true,
-  "github.copilot.chat.editor.temporalContext.enabled": true,
-  "github.copilot.chat.edits.temporalContext.enabled": true,
-  "github.copilot.chat.reviewSelection.enabled": true,
-  "github.copilot.enable": {
-    "markdown": true,
-  },
-}
