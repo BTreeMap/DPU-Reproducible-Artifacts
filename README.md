@@ -1,6 +1,6 @@
 # DPU Reproducible Artifacts
 
-This repository contains reproducible artifacts for evaluating Data Processing Unit (DPU) performance and capabilities. **All artifacts are packaged as Docker images and uploaded to the GitHub Container Registry (GHCR) with tags like `ghcr.io/btreemap/dpu-artifacts:<experiment-name>`**. Users are encouraged to run these pre-built images instead of building them locally to ensure consistent results.
+This repository contains reproducible artifacts for evaluating Data Processing Unit (DPU) performance and capabilities. **All artifacts are packaged as Docker images and uploaded to the GitHub Container Registry (GHCR) with tags like `ghcr.io/btreemap/dpu-reproducible-artifacts:<experiment-name>`**. Users are encouraged to run these pre-built images instead of building them locally to ensure consistent results.
 
 ## Purpose
 
@@ -16,18 +16,18 @@ The main objective of this repository is to provide standardized, reproducible e
 
 ### Using the Pre-built Images
 
-**All experiment images are built and uploaded to the GitHub Container Registry (GHCR) with tags like `ghcr.io/btreemap/dpu-artifacts:<experiment-name>`**.
+**All experiment images are built and uploaded to the GitHub Container Registry (GHCR) with tags like `ghcr.io/btreemap/dpu-reproducible-artifacts:<experiment-name>`**.
 
 You can pull and run the images directly:
 
 ```bash
-docker run ghcr.io/btreemap/dpu-artifacts:<experiment-name>
+docker run ghcr.io/btreemap/dpu-reproducible-artifacts:<experiment-name>
 ```
 
 For example, to run the network offload benchmark:
 
 ```bash
-docker run ghcr.io/btreemap/dpu-artifacts:network-offload-benchmark
+docker run ghcr.io/btreemap/dpu-reproducible-artifacts:network-offload-benchmark
 ```
 
 ### Using Docker Compose
@@ -37,7 +37,7 @@ You can also use the images in your `docker-compose.yml` file:
 ```yaml
 services:
   dpu-benchmark:
-    image: ghcr.io/btreemap/dpu-artifacts:network-offload-benchmark
+    image: ghcr.io/btreemap/dpu-reproducible-artifacts:network-offload-benchmark
     # Additional configuration as needed
 ```
 
