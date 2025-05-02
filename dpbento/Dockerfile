@@ -12,6 +12,8 @@ RUN apt-get update && \
         curl \
         git \
         gpg \
+        meson \
+        ninja-build \
         openssl \
         python-is-python3 \
         python3-full \
