@@ -21,6 +21,7 @@ RUN apt-get update && \
         python3-setuptools \
         python3-venv \
         sshpass \
+        sudo \
         unzip \
     && \
     apt-get clean && \
