@@ -3,6 +3,8 @@ FROM ubuntu:noble AS builder
 # Set non-interactive frontend for apt-get to avoid prompts
 ARG DEBIAN_FRONTEND=noninteractive
 
+COPY root/ /
+
 # Install build tools, Python, and utilities
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -11,7 +13,7 @@ RUN apt-get update && \
         cmake \
         curl \
         git \
-        gpg \
+        gnupg \
         meson \
         ninja-build \
         openssl \
@@ -25,7 +27,10 @@ RUN apt-get update && \
         unzip \
     && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    unzip /opt/dpbento.zip && \
+    rm /opt/dpbento.zip && \
+    mv /opt/dpBento-main /opt/dpbento
 
 FROM scratch
 
@@ -33,3 +38,5 @@ FROM scratch
 ENV TZ=America/Toronto
 
 COPY --from=builder / /
+
+ENTRYPOINT ["/usr/bin/env", "python3", "/opt/dpbento/run_dpbento.py"]
