@@ -1,9 +1,9 @@
-FROM ubuntu:noble
+FROM ubuntu:noble AS builder
 
-# Avoid interactive prompts during package installation
+# Set non-interactive frontend for apt-get to avoid prompts
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install necessary tools and libraries
+# Install build tools, Python, and utilities
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
@@ -26,3 +26,10 @@ RUN apt-get update && \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+FROM scratch
+
+# Set timezone
+ENV TZ=America/Toronto
+
+COPY --from=builder / /
