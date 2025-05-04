@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 COPY root/ /
 
-# Install build tools, Python, and utilities
+# Install build tools, Python, and utilities, then unzip and move dpbento
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
@@ -34,7 +34,7 @@ RUN apt-get update && \
 
 FROM scratch
 
-# Set timezone
+# Set timezone environment variable
 ENV TZ=America/Toronto
 
 COPY --from=builder / /
