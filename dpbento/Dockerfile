@@ -28,9 +28,14 @@ RUN apt-get update && \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    unzip /opt/dpbento.zip && \
+    unzip /opt/dpbento.zip -d /opt && \
     rm /opt/dpbento.zip && \
-    mv /opt/dpBento-main /opt/dpbento
+    mv /opt/dpBento-main /opt/dpbento && \
+
+WORKDIR /opt/dpbento
+
+# Pull submodules
+RUN git submodule update --init --recursive
 
 FROM scratch
 
