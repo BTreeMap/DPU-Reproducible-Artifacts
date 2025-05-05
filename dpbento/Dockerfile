@@ -39,7 +39,7 @@ RUN set -ex && \
     # Create and upgrade Python virtual environment
     python3 -m venv /opt/shared-venv --upgrade-deps
 
-ENV PATH=/opt/shared-venv/bin:$PATH
+ENV 
 
 WORKDIR /opt/dpbento
 
@@ -49,7 +49,9 @@ RUN git submodule update --init --recursive
 FROM scratch
 
 # Set timezone environment variable
-ENV TZ=America/Toronto
+ENV \
+    PATH=/opt/shared-venv/bin:$PATH \
+    TZ=America/Toronto
 
 COPY --from=builder / /
 
