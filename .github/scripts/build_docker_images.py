@@ -309,7 +309,7 @@ def main():
     logger = init_logger()
 
     # Free up disk space before starting builds
-    free_disk_space()
+    # free_disk_space()
 
     # Configuration from environment variables
     docker_registry = get_env_var("DOCKER_REGISTRY").lower()
