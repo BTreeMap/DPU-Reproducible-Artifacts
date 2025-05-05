@@ -39,8 +39,6 @@ RUN set -ex && \
     # Create and upgrade Python virtual environment
     python3 -m venv /opt/shared-venv --upgrade-deps
 
-ENV 
-
 WORKDIR /opt/dpbento
 
 # Initialize and update git submodules
