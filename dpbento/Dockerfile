@@ -30,7 +30,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     unzip /opt/dpbento.zip -d /opt && \
     rm /opt/dpbento.zip && \
-    mv /opt/dpBento-main /opt/dpbento && \
+    mv /opt/dpBento-main /opt/dpbento
 
 WORKDIR /opt/dpbento
 
