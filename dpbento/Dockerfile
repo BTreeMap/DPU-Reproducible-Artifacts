@@ -5,8 +5,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 COPY root/ /
 
-# Install build tools, Python, and utilities, then unzip and move dpbento
-RUN apt-get update && \
+RUN set -ex && \
+    \
+    # Install build tools, Python, and utilities
+    apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
         build-essential \
@@ -28,13 +30,20 @@ RUN apt-get update && \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    \
+    # Unzip dpbento archive, remove zip, and rename directory for consistency
     unzip /opt/dpbento.zip -d /opt && \
     rm /opt/dpbento.zip && \
-    mv /opt/dpBento /opt/dpbento
+    mv /opt/dpBento /opt/dpbento && \
+    \
+    # Create and upgrade Python virtual environment
+    python3 -m venv /opt/shared-venv --upgrade-deps
+
+ENV PATH=/opt/shared-venv/bin:$PATH
 
 WORKDIR /opt/dpbento
 
-# Pull submodules
+# Initialize and update git submodules
 RUN git submodule update --init --recursive
 
 FROM scratch
@@ -44,4 +53,5 @@ ENV TZ=America/Toronto
 
 COPY --from=builder / /
 
+# Run dpbento using Python
 ENTRYPOINT ["/usr/bin/env", "python3", "/opt/dpbento/run_dpbento.py"]
